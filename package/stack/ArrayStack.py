@@ -1,4 +1,4 @@
-class Stack(object):
+class ArrayStack(object):
   def __init__(self):
     self.items = []
     self.top = -1
@@ -27,7 +27,7 @@ class Stack(object):
 
 
 if __name__ == '__main__':
-  a = Stack()
+  a = ArrayStack()
   a.push(2).push(7)
 
   print(a)

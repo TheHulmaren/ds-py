@@ -36,6 +36,26 @@ class LinkedList(object):
       cur = cur.getNext()
     return result
 
+  # returns a string containing items in reversed order
+  # without changing actual order of the linked list
+  # - uses backtracking approach
+  # when failed returns None
+  def reverseStr(self):
+    if self.head is None:
+      print('Head not defined')
+      return
+    result = []
+    self.reverseStrIter(self.head, result)
+    return str(result)
+
+  # iteratetor used for reverseStr
+  # when given node is None returns None
+  def reverseStrIter(self, node, result):
+    if node is None:
+      return
+    self.reverseStrIter(node.getNext(), result)
+    result.append(node.getKey())
+
   # alters head pointer to point a node with given key
   def insertAtFirst(self, key):
     insertedNode = Node(key, self.head)
@@ -169,6 +189,7 @@ class LinkedList(object):
     return -1
 
   # reverses linked list
+  # - uses backtracking approach
   # when failed returns None
   def reverse(self):
     if self.head is None:
@@ -200,26 +221,29 @@ class LinkedList(object):
       curNode = curNode.getNext()
     return curIndex
 
-a = LinkedList()
+if __name__=='__main__':
+  a = LinkedList()
 
-a.insertAtFirst(1).insertAtFirst(2).insertAtFirst(10)
-print(a)
+  a.insertAtFirst(1).insertAtFirst(2).insertAtFirst(10)
+  print(a)
 
-print(a.search(1).key)
-print(a.insertAfter(a.search(0), 15))
+  print(a.search(1).key)
+  print(a.insertAfter(a.search(0), 15))
 
-print(a.insertAt(17, 0))
-print(a.insertAt(9, 2))
+  print(a.insertAt(17, 0))
+  print(a.insertAt(9, 2))
 
-print(a.deleteAt(4))
-print(a.deleteAt(0))
+  print(a.deleteAt(4))
+  print(a.deleteAt(0))
 
-print(a.updateAt(11, 1))
+  print(a.updateAt(11, 1))
 
-print(a.deleteByKey(1))
+  print(a.deleteByKey(1))
 
-a.insertAtLast(100).insertAtLast(17).insertAtLast(5)
-a.reverse()
-print(a)
+  a.insertAtLast(100).insertAtLast(17).insertAtLast(5)
+  a.reverse()
+  print(a)
 
-print(a.length())
+  print(a.length())
+
+  print(a.reverseStr())
